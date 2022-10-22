@@ -2,7 +2,6 @@ use chrono;
 use reqwest::Client;
 use reqwest::Result;
 use std::collections::HashMap;
-// use url::Url;
 // use crate::util;
 
 const TAOBAO_ROUTER: &str = "https://eco.taobao.com/router/rest";
@@ -37,16 +36,13 @@ impl SDKClient {
             // router: "https://eco.taobao.com/router/rest".to_string(),
         }
     }
-    pub async fn send_request(
-        &mut self,
-        req: impl super::IRequest,
-    ) -> Result<String> {
+    pub async fn send_request(&mut self, req: impl super::IRequest) -> Result<String> {
         if self.app_key.len() == 0 || self.app_secret.len() == 0 {
             return Ok("".to_string());
         }
         self.method = req.get_method_name();
         let req_param = req.get_map_param();
-        self.make_sign(req_param.clone() );
+        self.make_sign(req_param.clone());
 
         let response = Client::new()
             .request(
@@ -88,15 +84,11 @@ impl SDKClient {
         map
     }
 
-
-     fn make_sign(
-        &mut self,
-        req_param: HashMap<&str, String>,
-    )  {
+    fn make_sign(&mut self, req_param: HashMap<&str, String>) {
         let pub_param = self.get_map_param();
         let mut key_list: Vec<&str> = Vec::new();
         let mut all_param_map: HashMap<&str, String> = HashMap::new();
-    
+
         for (key, val) in pub_param {
             all_param_map.insert(key, val);
             key_list.push(key)
@@ -112,47 +104,45 @@ impl SDKClient {
             sign_str = format!("{}{}{}", sign_str, key, value)
         }
 
-        
-        self.sign=        crate::util::hmac_sha256_hex(
-            sign_str.as_str().as_bytes(), 
+        self.sign = crate::util::hmac_sha256_hex(
+            sign_str.as_str().as_bytes(),
             self.app_secret.as_str().as_bytes(),
         )
-            .to_ascii_uppercase();
-    }   
-
-}
-
-#[cfg(test)]
-mod tests {
-    use crate::taobao::taobaosdk::TaobaoTbkActivityInfoGetRequest;
-    use super::*;
-    use tokio;
-
-    #[tokio::test]
-    async fn test_reqwest_json() {
-        let app_key = "";
-        let app_secret = "";
-
-        let arg = TaobaoTbkActivityInfoGetRequest {
-            activity_material_id: "".to_string(),
-            adzone_id: 111121450199 as i64,
-            sub_pid: "".to_owned(),
-            relation_id: "".to_owned(),
-            union_id: "".to_owned(),
-        };
-        // //let payload = serde_json::to_string(&arg).expect("not valid json");
-        // //println!("arg === {}", payload);
-        // let s: model::ResResponseCreate = SDKClient::new(ak, sk, "")
-        //     .send_request(arg)
-        //     .await
-        //     .expect("msg");
-        // println!("result === {:?}", serde_json::to_string_pretty(&s).unwrap());
-        let s = SDKClient::new(app_key, app_secret, "")
-            .send_request(arg)
-            .await
-            .expect("msg");
-        // println!("result === {:?}", serde_json::to_string_pretty(&s).unwrap());
-        println!("result === {:?}", s);
-        assert_eq!(s, "")
+        .to_ascii_uppercase();
     }
 }
+
+// #[cfg(test)]
+// mod tests {
+//     use crate::taobao::taobaosdk::TaobaoTbkActivityInfoGetRequest;
+//     use super::*;
+//     use tokio;
+
+//     #[tokio::test]
+//     async fn test_reqwest_json() {
+//         let app_key = "";
+//         let app_secret = "";
+
+//         let arg = TaobaoTbkActivityInfoGetRequest {
+//             activity_material_id: "".to_string(),
+//             adzone_id: 111121450199 as i64,
+//             sub_pid: "".to_owned(),
+//             relation_id: "".to_owned(),
+//             union_id: "".to_owned(),
+//         };
+//         // //let payload = serde_json::to_string(&arg).expect("not valid json");
+//         // //println!("arg === {}", payload);
+//         // let s: model::ResResponseCreate = SDKClient::new(ak, sk, "")
+//         //     .send_request(arg)
+//         //     .await
+//         //     .expect("msg");
+//         // println!("result === {:?}", serde_json::to_string_pretty(&s).unwrap());
+//         let s = SDKClient::new(app_key, app_secret, "")
+//             .send_request(arg)
+//             .await
+//             .expect("msg");
+//         // println!("result === {:?}", serde_json::to_string_pretty(&s).unwrap());
+//         println!("result === {:?}", s);
+//         assert_eq!(s, "")
+//     }
+// }

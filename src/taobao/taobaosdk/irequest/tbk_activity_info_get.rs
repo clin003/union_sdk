@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use super::IRequest;
 
+/// taobao.tbk.activity.info.get( 淘宝客-推广者-官方活动转链 )
 // https://open.taobao.com/api.htm?docId=48340&docType=2
 pub struct TaobaoTbkActivityInfoGetRequest {
     pub activity_material_id: String,

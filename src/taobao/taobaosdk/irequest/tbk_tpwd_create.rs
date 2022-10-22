@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use super::IRequest;
 
+/// taobao.tbk.tpwd.create( 淘宝客-公用-淘口令生成 )
+/// 提供淘口令生成接口。
 // https://open.taobao.com/api.htm?docId=31127&docType=2
 pub struct TaobaoTbkTpwdCreateRequest {
     pub url: String,
