@@ -48,15 +48,7 @@ pub fn get_taobao_topsdk_sign(
         let value = all_param_map[key].clone();
         sign_str = format!("{}{}{}", sign_str, key, value)
     }
-    // println!("{}", sign_str);
-    // ret_sign = hmac_sha256_hex(
-    //     sign_str.as_str().as_bytes(),
-    //     app_secret.as_str().as_bytes(),
-    // );
-    // retSign=retSign.to_ascii_uppercase();
-    // retSign
-    // self.sign = retSign.to_ascii_uppercase();
-    // self.sign
+
     hmac_sha256_hex(sign_str.as_str().as_bytes(), app_secret.as_str().as_bytes())
         .to_ascii_uppercase()
 }
