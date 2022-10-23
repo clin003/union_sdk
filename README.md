@@ -20,17 +20,13 @@ TODO:
 | JD(京东联盟)                                           | ❎    |  
 
 ## 使用
-<details>
-<summary>
-</summary>
+
 ```toml
 [dependencies]
 
 # The core APIs
 union_sdk = { version = "0.1.0"}
-
 ```
-</details>
 
 ## 文档
 
