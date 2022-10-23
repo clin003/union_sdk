@@ -9,7 +9,7 @@ async fn main() {
 
     let app_key = env::var("APP_KEY").unwrap();
     let app_secret = env::var("APP_SECRET").unwrap();
-    let activity_material_id=env::var("MATERIAL_ID").unwrap();
+    let activity_material_id = env::var("MATERIAL_ID").unwrap();
 
     // https://open.taobao.com/api.htm?docId=48340&docType=2&scopeId=18294
     let arg = TaobaoTbkActivityInfoGetRequest {

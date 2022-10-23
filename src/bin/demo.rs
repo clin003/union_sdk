@@ -10,9 +10,9 @@ async fn main() {
     let app_key = env::var("APP_KEY").unwrap();
     let app_secret = env::var("APP_SECRET").unwrap();
 
-    let tkl_url=env::var("TKL_URL").unwrap();
+    let tkl_url = env::var("TKL_URL").unwrap();
     // https://open.taobao.com/api.htm?docId=31127&docType=2
-    let arg=TaobaoTbkTpwdCreateRequest::new(tkl_url.as_str());
+    let arg = TaobaoTbkTpwdCreateRequest::new(tkl_url.as_str());
     let result_instance = SDKClient::new(app_key.as_str(), app_secret.as_str(), "")
         .send_request(arg)
         .await
