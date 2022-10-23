@@ -78,10 +78,10 @@ To setup the development envrionment run `cargo run`.
 
 ## Getting help
 
-联盟SDK是个人项目。
-我希望这个项目会变得越来越可爱。许多实用的其他函数将
-将在将来添加。我希望你能积极帮助这个项目成长并提出建议。
-我相信未来会越来越好。
+union_sdk 是个人项目。
+我希望这个项目会变得越来越可爱。
+希望你能积极帮助这个项目成长并提出建议。
+相信未来会越来越好。
 
 
 #### License
