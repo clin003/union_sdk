@@ -32,8 +32,7 @@ impl SDKClient {
             sign_method: "hmac-sha256".to_string(),
             sign: "".to_string(),
             format: "json".to_string(),
-            simplify: true,
-            // router: "https://eco.taobao.com/router/rest".to_string(),
+            simplify: true,            
         }
     }
     pub async fn send_request(&mut self, req: impl super::IRequest) -> Result<String> {

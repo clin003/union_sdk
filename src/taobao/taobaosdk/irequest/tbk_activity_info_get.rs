@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use super::IRequest;
+use std::collections::HashMap;
 
 /// taobao.tbk.activity.info.get( 淘宝客-推广者-官方活动转链 )
 // https://open.taobao.com/api.htm?docId=48340&docType=2
@@ -9,6 +9,23 @@ pub struct TaobaoTbkActivityInfoGetRequest {
     pub sub_pid: String,
     pub relation_id: String,
     pub union_id: String,
+}
+impl TaobaoTbkActivityInfoGetRequest {
+    pub fn new(
+        activity_material_id: &str,
+        adzone_id: i64,
+        sub_pid: &str,
+        relation_id: &str,
+        union_id: &str,
+    ) -> Self {
+        TaobaoTbkActivityInfoGetRequest {
+            activity_material_id: activity_material_id.to_string(),
+            adzone_id: adzone_id,
+            sub_pid: sub_pid.to_string(),
+            relation_id: relation_id.to_string(),
+            union_id: union_id.to_string(),
+        }
+    }
 }
 impl IRequest for TaobaoTbkActivityInfoGetRequest {
     // 获取方法名
