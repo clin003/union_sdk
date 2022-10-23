@@ -1,6 +1,6 @@
 [package]
 name = "union_sdk"
-version = "0.1.3"
+version = "0.1.5"
 edition = "2021"
 authors = ["白菜林 <hi@nav.xin>"]
 description = "开发平台 Rust SDK, 集成简单快捷，也可以快速添加本SDK没有集成的接口。"
