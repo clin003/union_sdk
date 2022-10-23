@@ -5,7 +5,10 @@ edition = "2021"
 authors = ["白菜林 <hi@nav.xin>"]
 description = "开发平台 Rust SDK, 集成简单快捷，也可以快速添加本SDK没有集成的接口。"
 keywords = ["taobao","tbsdk", "topsdk","淘宝sdk","union sdk"]
-license = " MIT OR AGPL-3.0"
+license = " MIT OR Apache-2.0"
+homepage = "https://3ae.cn/"
+repository = "https://github.com/clin003/union_sdk"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
