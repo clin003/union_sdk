@@ -25,5 +25,4 @@ async fn main() {
         .await
         .unwrap();
     println!("{}", result_instance);
-
 }
