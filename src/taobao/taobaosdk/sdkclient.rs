@@ -17,9 +17,9 @@ pub struct SDKClient {
     sign: String, //todo
     format: String,
     simplify: bool,
-    // router: String,
 }
 impl SDKClient {
+    // 新建sdk client
     pub fn new(app_key: &str, app_secret: &str, session: &str) -> Self {
         let timestamp = chrono::Utc::now().format("%Y-%m-%d %H:%M:%S").to_string();
         SDKClient {
@@ -32,9 +32,10 @@ impl SDKClient {
             sign_method: "hmac-sha256".to_string(),
             sign: "".to_string(),
             format: "json".to_string(),
-            simplify: true,            
+            simplify: true,
         }
     }
+    // 发送请求
     pub async fn send_request(&mut self, req: impl super::IRequest) -> Result<String> {
         if self.app_key.len() == 0 || self.app_secret.len() == 0 {
             return Ok("".to_string());
@@ -62,7 +63,8 @@ impl SDKClient {
         response.text().await
     }
 
-    pub fn get_map_param(&self) -> HashMap<&str, String> {
+    // 获取公共参数
+    fn get_map_param(&self) -> HashMap<&str, String> {
         // let mut map: HashMap<String, String> = HashMap::new();
         let mut map = HashMap::from([
             ("method", self.method.clone()),
@@ -83,6 +85,7 @@ impl SDKClient {
         map
     }
 
+    // 生成签名
     fn make_sign(&mut self, req_param: HashMap<&str, String>) {
         let pub_param = self.get_map_param();
         let mut key_list: Vec<&str> = Vec::new();
@@ -110,38 +113,3 @@ impl SDKClient {
         .to_ascii_uppercase();
     }
 }
-
-// #[cfg(test)]
-// mod tests {
-//     use crate::taobao::taobaosdk::TaobaoTbkActivityInfoGetRequest;
-//     use super::*;
-//     use tokio;
-
-//     #[tokio::test]
-//     async fn test_reqwest_json() {
-//         let app_key = "";
-//         let app_secret = "";
-
-//         let arg = TaobaoTbkActivityInfoGetRequest {
-//             activity_material_id: "".to_string(),
-//             adzone_id: 111121450199 as i64,
-//             sub_pid: "".to_owned(),
-//             relation_id: "".to_owned(),
-//             union_id: "".to_owned(),
-//         };
-//         // //let payload = serde_json::to_string(&arg).expect("not valid json");
-//         // //println!("arg === {}", payload);
-//         // let s: model::ResResponseCreate = SDKClient::new(ak, sk, "")
-//         //     .send_request(arg)
-//         //     .await
-//         //     .expect("msg");
-//         // println!("result === {:?}", serde_json::to_string_pretty(&s).unwrap());
-//         let s = SDKClient::new(app_key, app_secret, "")
-//             .send_request(arg)
-//             .await
-//             .expect("msg");
-//         // println!("result === {:?}", serde_json::to_string_pretty(&s).unwrap());
-//         println!("result === {:?}", s);
-//         assert_eq!(s, "")
-//     }
-// }
