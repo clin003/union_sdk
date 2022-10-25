@@ -6,3 +6,5 @@ pub trait IRequest {
 
 pub mod tbk_activity_info_get;
 pub mod tbk_tpwd_create;
+pub mod tbk_tpwd_convert;
+pub mod tbk_tpwd_temporary_convert;

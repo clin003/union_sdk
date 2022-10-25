@@ -23,5 +23,12 @@ pub use self::sdkclient::SDKClient;
 
 mod irequest;
 pub use self::irequest::IRequest;
+/// 官方活动转链
 pub use self::irequest::tbk_activity_info_get::TaobaoTbkActivityInfoGetRequest;
+/// 淘口令生成
 pub use self::irequest::tbk_tpwd_create::TaobaoTbkTpwdCreateRequest;
+/// 淘口令解析&转链
+pub use self::irequest::tbk_tpwd_convert::TbkTpwdConvertRequest;
+/// 淘口令解析&&转链（临时接口）
+pub use self::irequest::tbk_tpwd_temporary_convert::TbkTpwdTemporaryConvertRequest;
+
