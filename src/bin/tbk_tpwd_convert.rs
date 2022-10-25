@@ -10,13 +10,14 @@ async fn main() {
     let app_key = env::var("APP_KEY").unwrap();
     let app_secret = env::var("APP_SECRET").unwrap();
     let adzone_id = env::var("ADZONE_ID").unwrap();
+    let tkl=env::var("TKL").unwrap();
 
     // https://open.taobao.com/api.htm?docId=63323&docType=2&scopeId=16290
     // https://open.taobao.com/api.htm?docId=32932&docType=2&scopeId=16290
 
     let arg = TbkTpwdConvertRequest::new(
         "",
-        "07￥ CZ0001 OCwKdaeAcBR￥ https://m.tb.cn/h.UVCPDwn  双11超级红包主会场",
+        tkl.as_str(),
         adzone_id.as_str(),
         "",
         "",
